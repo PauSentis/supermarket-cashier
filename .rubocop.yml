@@ -29,10 +29,6 @@ Metrics/PerceivedComplexity:
   Exclude:
     - 'cli.rb'
 
-Style/SafeNavigationChainLength:
-  Exclude:
-    - 'cli.rb'
-
 Layout/LineLength:
     Exclude:
     - 'cli.rb'
