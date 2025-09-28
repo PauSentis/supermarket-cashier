@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CartItem
   attr_reader :product, :quantity
   attr_accessor :unit_price
@@ -14,7 +16,7 @@ class CartItem
 
   def total_amount = unit_price * quantity
 
-  [:code, :name, :base_price].each do |method|
+  %i[code name base_price].each do |method|
     define_method(method) { product.public_send(method) }
   end
 end

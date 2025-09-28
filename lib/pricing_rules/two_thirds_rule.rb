@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PricingRules
   # This rule enforces a fixed "two-thirds of base price" calculation once the
   # minimum quantity threshold is met.
@@ -19,15 +21,15 @@ module PricingRules
   # while guaranteeing you never exceed the intended discounted price.
   class TwoThirdsRule < ::PricingRule
     def apply(cart_items)
-      item = cart_items.find { |ci| ci.code == options["product_code"] }
+      item = cart_items.find { |ci| ci.code == options['product_code'] }
       return unless item
 
-      if item.quantity >= options["min_quantity"]
-        item.unit_price = [
-          item.unit_price,                                    # current price (after earlier rules)
-          item.unit_price = item.base_price * Rational(2, 3)  # discounted base price
-        ].min
-      end
+      return unless item.quantity >= options['min_quantity']
+
+      item.unit_price = [
+        item.unit_price,                                    # current price (after earlier rules)
+        item.unit_price = item.base_price * Rational(2, 3)  # discounted base price
+      ].min
     end
   end
 end

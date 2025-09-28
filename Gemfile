@@ -1,3 +1,6 @@
-source "https://rubygems.org"
+# frozen_string_literal: true
 
-gem "rspec"
+source 'https://rubygems.org'
+
+gem 'rspec', '~> 3.13'
+gem 'rubocop', '~> 1.81', require: false

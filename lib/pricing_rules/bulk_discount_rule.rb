@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PricingRules
   # This rule applies a bulk price reduction when the quantity threshold is met,
   # but does so in a way that respects prior discounts.
@@ -21,12 +23,12 @@ module PricingRules
   # without accidentally overriding a better price.
   class BulkDiscountRule < ::PricingRule
     def apply(cart_items)
-      item = cart_items.find { |ci| ci.code == options["product_code"] }
+      item = cart_items.find { |ci| ci.code == options['product_code'] }
       return unless item
 
-      if item.quantity >= options["min_quantity"]
-        item.unit_price = [item.unit_price, options["new_price"]].min
-      end
+      return unless item.quantity >= options['min_quantity']
+
+      item.unit_price = [item.unit_price, options['new_price']].min
     end
   end
 end

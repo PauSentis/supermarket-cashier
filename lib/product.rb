@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'yaml'
 
 class Product
@@ -14,11 +16,11 @@ class Product
   def base_price = price
 
   def self.all(reload: false)
-    @products = nil if reload
-    @products ||= begin
+    @all = nil if reload
+    @all ||= begin
       data = YAML.load_file(PRODUCTS_PATH)
-      data["products"].map do |item|
-        new(item["code"], item["name"], item["price"])
+      data['products'].map do |item|
+        new(item['code'], item['name'], item['price'])
       end
     end
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'yaml'
 
 class PricingRule
@@ -10,26 +12,24 @@ class PricingRule
   end
 
   def self.all(reload: false)
-    @rules = nil if reload
-    @rules ||= begin
+    @all = nil if reload
+    @all ||= begin
       data = YAML.load_file(PRICING_RULES_PATH)
-      data["rules"].map do |rule_hash|
-        type = rule_hash["type"]
+      data['rules'].map do |rule_hash|
+        type = rule_hash['type']
 
-        if PricingRules.const_defined?(type)
-          klass = PricingRules.const_get(type)
-          klass.new(rule_hash)
-        else
-          raise NameError, "Unknown rule type: #{type}"
-        end
+        raise NameError, "Unknown rule type: #{type}" unless PricingRules.const_defined?(type)
+
+        klass = PricingRules.const_get(type)
+        klass.new(rule_hash)
       end
     end
   end
 
   def apply(_cart_items)
-    raise NotImplementedError, "Each rule must implement #apply"
+    raise NotImplementedError, 'Each rule must implement #apply'
   end
 end
 
 # Load pricing rule subclasses after PricingRule is defined
-Dir[File.join(__dir__, "pricing_rules", "*.rb")].sort.each { |f| require f }
+Dir[File.join(__dir__, 'pricing_rules', '*.rb')].each { |f| require f }

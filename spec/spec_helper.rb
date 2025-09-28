@@ -1,2 +1,4 @@
-require "rspec"
-require_relative "../lib/checkout"
+# frozen_string_literal: true
+
+require 'rspec'
+require_relative '../lib/checkout'

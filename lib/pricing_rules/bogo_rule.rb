@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PricingRules
   # This rule applies a "Buy One, Get One Free" (BOGO) offer by recalculating
   # the unit price so that effectively half of the items are free.
@@ -16,7 +18,7 @@ module PricingRules
   # - Current price after other rules: £1.80 → final price remains £1.80
   class BogoRule < ::PricingRule
     def apply(cart_items)
-      item = cart_items.find { |ci| ci.code == options["product_code"] }
+      item = cart_items.find { |ci| ci.code == options['product_code'] }
       return unless item
 
       free_count = item.quantity / 2

@@ -1,6 +1,8 @@
-require_relative "product"
-require_relative "cart_item"
-require_relative "pricing_rule"
+# frozen_string_literal: true
+
+require_relative 'product'
+require_relative 'cart_item'
+require_relative 'pricing_rule'
 
 class Checkout
   attr_reader :total, :cart_items, :pricing_rules
@@ -10,7 +12,7 @@ class Checkout
     @cart_items = []
     @total = 0.0
   end
-  
+
   # Add a product to the cart
   def scan(code)
     product = Product.find_by_code(code)
@@ -25,7 +27,7 @@ class Checkout
 
     recaulate_total
   end
-  
+
   private
 
   def recaulate_total
