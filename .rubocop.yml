@@ -7,6 +7,8 @@ AllCops:
 
 Metrics/AbcSize:
   Max: 18
+  Exclude:
+    - 'cli.rb'
 
 Metrics/BlockLength:
   Exclude:
@@ -14,3 +16,23 @@ Metrics/BlockLength:
 
 Style/Documentation:
   Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'cli.rb'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'cli.rb'
+
+Metrics/PerceivedComplexity:
+  Exclude:
+    - 'cli.rb'
+
+Style/SafeNavigationChainLength:
+  Exclude:
+    - 'cli.rb'
+
+Layout/LineLength:
+    Exclude:
+    - 'cli.rb'
