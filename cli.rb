@@ -34,7 +34,7 @@ class CLI
 
     loop do
       print 'Scan: '
-      input = gets&.chomp&.strip&.upcase
+      input = gets.chomp.strip.upcase
       break if input == 'DONE'
 
       if input == 'HELP'
