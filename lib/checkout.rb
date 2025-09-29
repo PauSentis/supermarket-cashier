@@ -33,7 +33,7 @@ class Checkout
   def recaulate_total
     reset_prices
     apply_rules
-    @total = @cart_items.sum(&:total_amount).round(2)
+    @total = cart_items.sum(&:total_amount).round(2)
   end
 
   # Reset all unit prices to their base prices before re-applying rules
@@ -42,6 +42,6 @@ class Checkout
   end
 
   def apply_rules
-    pricing_rules.each { |rule| rule.apply(@cart_items) }
+    pricing_rules.each { |rule| rule.apply(cart_items) }
   end
 end
